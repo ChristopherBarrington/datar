@@ -13,8 +13,6 @@
 #' 
 #' @return
 #' Invisibly returns paths to saved object(s).
-#' 
-#' @describeIn save Save objects to a data repository
 #'
 save_to_data_repository <- function(..., path=data_repository_path()) {
   path %<>% file.path('data') %>% init()
