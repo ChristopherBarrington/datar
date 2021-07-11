@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Save objects to a data repository — save • datarepository</title>
+<title>Save objects to a data repository — save_to_data_repository • datarepository</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,9 @@
 
 
 
-<meta property="og:title" content="Save objects to a data repository — save" />
-<meta property="og:description" content="Uses either the base or datarepository versions of save depending on arguments. If the file argument is used, it is assumed that base::save was intended, otherwise the datarepository version is used." />
+<meta property="og:title" content="Save objects to a data repository — save_to_data_repository" />
+<meta property="og:description" content="Saves an rda in the 'data' directory of a data repository.
+Uses either the base or datarepository versions of save depending on arguments. If the file argument is used, it is assumed that base::save was intended, otherwise the datarepository version is used." />
 
 
 
@@ -109,12 +110,37 @@
     </div>
 
     <div class="ref-description">
-    <p>Uses either the <code>base</code> or <code>datarepository</code> versions of <code>save</code> depending on arguments. If the <code>file</code> argument is used, it is assumed that <code><a href='https://rdrr.io/r/base/save.html'>base::save</a></code> was intended, otherwise the <code>datarepository</code> version is used.</p>
+    <p>Saves an <code>rda</code> in the 'data' directory of a data repository.</p>
+<p>Uses either the <code>base</code> or <code>datarepository</code> versions of <code>save</code> depending on arguments. If the <code>file</code> argument is used, it is assumed that <code><a href='https://rdrr.io/r/base/save.html'>base::save</a></code> was intended, otherwise the <code>datarepository</code> version is used.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>save</span><span class='op'>(</span><span class='va'>...</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>save_to_data_repository</span><span class='op'>(</span><span class='va'>...</span>, path <span class='op'>=</span> <span class='fu'><a href='data_repository_path.html'>data_repository_path</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
 
+<span class='fu'>save</span><span class='op'>(</span><span class='va'>...</span><span class='op'>)</span></pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>...</th>
+      <td><p>Arguments passed to <code><a href='https://rdrr.io/r/base/save.html'>base::save</a></code> or <code>save_to_data_repository()</code> including objects to save</p></td>
+    </tr>
+    <tr>
+      <th>path</th>
+      <td><p>Path to 'data' subdirectory of a data repository in which objects will be <code>save</code>d, defaults to <code>datarepo:::data_repository_path()</code></p></td>
+    </tr>
+    </table>
+
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>Invisibly returns paths to saved object(s).</p>
+    <h2 class="hasAnchor" id="functions"><a class="anchor" href="#functions"></a>Functions</h2>
+
+    
+<ul>
+<li><p><code>save_to_data_repository</code>: Save to data repository</p></li>
+<li><p><code>save</code>: Save data using <code><a href='https://rdrr.io/r/base/save.html'>base::save</a></code></p></li>
+</ul>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
