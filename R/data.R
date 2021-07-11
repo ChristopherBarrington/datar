@@ -6,6 +6,8 @@
 #' 
 #' @param ... See `?utils::data`
 #' 
+#' @name data
+#' 
 #' @export
 #' 
 data <- function(..., list=character(), package=NULL, lib.loc=NULL, verbose=getOption("verbose"), envir=.GlobalEnv, overwrite=TRUE, paths) {
