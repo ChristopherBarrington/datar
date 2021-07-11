@@ -4,15 +4,18 @@
     <loc>https://christopherbarrington.github.io/datar/index.html</loc>
   </url>
   <url>
-    <loc>https://christopherbarrington.github.io/datar/reference/datar_path.html</loc>
+    <loc>https://christopherbarrington.github.io/datar/reference/data.html</loc>
   </url>
   <url>
-    <loc>https://christopherbarrington.github.io/datar/reference/get_root.html</loc>
+    <loc>https://christopherbarrington.github.io/datar/reference/data_repository_path.html</loc>
+  </url>
+  <url>
+    <loc>https://christopherbarrington.github.io/datar/reference/find.package.html</loc>
   </url>
   <url>
     <loc>https://christopherbarrington.github.io/datar/reference/init.html</loc>
   </url>
   <url>
-    <loc>https://christopherbarrington.github.io/datar/reference/save_datar.html</loc>
+    <loc>https://christopherbarrington.github.io/datar/reference/save.html</loc>
   </url>
 </urlset>
