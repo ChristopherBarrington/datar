@@ -10,5 +10,5 @@ find.package(...)
 Paths to all loaded packages (prepended with the data repository path) or the path to the specified \code{package}.
 }
 \description{
-Prepends \code{data_repository_path()} to the result of the base::find_package function.
+Prepends \code{data_repository_path()} to the result of the \code{base::find_package} function.
 }
