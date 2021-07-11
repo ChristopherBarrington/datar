@@ -8,7 +8,7 @@
 #' 
 #' @export
 #' 
-data <- function (..., list=character(), package=NULL, lib.loc=NULL, verbose=getOption("verbose"), envir=.GlobalEnv, overwrite=TRUE, paths) {
+data <- function(..., list=character(), package=NULL, lib.loc=NULL, verbose=getOption("verbose"), envir=.GlobalEnv, overwrite=TRUE, paths) {
     fileExt <- function(x) {
         db <- grepl("\\.[^.]+\\.(gz|bz2|xz)$", x)
         ans <- sub(".*\\.", "", x)
@@ -196,7 +196,7 @@ data <- function (..., list=character(), package=NULL, lib.loc=NULL, verbose=get
 #' Find paths to loaded packages
 #' 
 #' @description
-#' Prepends `data_repository_path()` to the result of the base::find_package function.
+#' Prepends `data_repository_path()` to the result of the `base::find_package` function.
 #' 
 #' @return
 #' Paths to all loaded packages (prepended with the data repository path) or the path to the specified `package`.
