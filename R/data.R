@@ -11,7 +11,7 @@
 #' 
 #' @export
 #' 
-datad <- function(..., list=character(), package=NULL, lib.loc=NULL, verbose=getOption("verbose"), envir=.GlobalEnv, overwrite=TRUE, paths) {
+data <- function(..., list=character(), package=NULL, lib.loc=NULL, verbose=getOption("verbose"), envir=.GlobalEnv, overwrite=TRUE, paths) {
     fileExt <- function(x) {
         db <- grepl("\\.[^.]+\\.(gz|bz2|xz)$", x)
         ans <- sub(".*\\.", "", x)
