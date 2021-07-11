@@ -11,6 +11,8 @@
 #' @importFrom magrittr %<>%
 #' @importFrom usethis ui_done ui_todo ui_value
 #' 
+#' @describeIn save Save to data repository
+#' 
 #' @return
 #' Invisibly returns paths to saved object(s).
 #'
@@ -31,7 +33,11 @@ save_to_data_repository <- function(..., path=data_repository_path()) {
 #' @description
 #' Uses either the `base` or `datarepository` versions of `save` depending on arguments. If the `file` argument is used, it is assumed that `base::save` was intended, otherwise the `datarepository` version is used.
 #' 
+#' @param ... Arguments passed to `base::save` or `save_to_data_repository()` including objects to save
+#' 
 #' @importFrom magrittr %>% extract2
+#' 
+#' @describeIn save Save data using `base::save`
 #' 
 #' @export
 #' 
