@@ -1,6 +1,6 @@
-Package: datar
+Package: datarepository
 Title: handles saving and loading project data
-Version: 0.0.0.9001
+Version: 0.1.0
 Authors@R: 
   person(given='Christopher',
          family='Barrington',
@@ -18,7 +18,8 @@ Imports:
   magrittr,
   purrr,
   stringr,
-  usethis
+  usethis,
+  utils
 Depends: 
   R (>= 2.10)
-URL: https://christopherbarrington.github.io/datar
+URL: https://christopherbarrington.github.io/datarepository
