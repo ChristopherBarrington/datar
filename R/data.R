@@ -2,11 +2,9 @@
 #' Load objects from a data repository
 #' 
 #' @description
-#' A copy of the `utils::data` (4.1.0) function, copied into this namespace to use the `datar::find.package` function instead of `base::find.package`.
+#' A copy of the `utils::data` (4.1.0) function, copied into this namespace to use the `datarepository:::find.package` function instead of `base::find.package`.
 #' 
 #' @param ... See `?utils::data`
-#' 
-#' @name data
 #' 
 #' @export
 #' 

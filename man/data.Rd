@@ -19,5 +19,5 @@ data(
 \item{...}{See \code{?utils::data}}
 }
 \description{
-A copy of the \code{utils::data} (4.1.0) function, copied into this namespace to use the \code{datar::find.package} function instead of \code{base::find.package}.
+A copy of the \code{utils::data} (4.1.0) function, copied into this namespace to use the \code{datarepository:::find.package} function instead of \code{base::find.package}.
 }
