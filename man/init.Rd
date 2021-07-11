@@ -2,13 +2,16 @@
 % Please edit documentation in R/init.R
 \name{init}
 \alias{init}
-\title{Create the datar directory}
+\title{Create the data repository}
 \usage{
-init(path = datar_path())
+init(path = data_repository_path())
 }
 \arguments{
-\item{path}{Path to datar directory in which \code{R} objects will be saved}
+\item{path}{Path to data repository}
+}
+\value{
+Invisibly returns \code{path}
 }
 \description{
-Create the datar directory
+Create the data repository
 }
