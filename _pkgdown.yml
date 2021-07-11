@@ -14,4 +14,4 @@ reference:
   - title: Loader
     desc: These functions are used to load data from a 'data' directory using `utils::data` behind the scenes.
     contents:
-      - data
+      - datad
