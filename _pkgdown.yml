@@ -1,3 +1,20 @@
 url: https://christopherbarrington.github.io/datar
 
 destination: docs
+
+reference:
+  - title: Savers
+    desc: These functions use `base::save` to write objects to a data repository. The `base::save` function will be used if `save(file='file.rda', ...)` is specified otherwise the data repository is used; `save_to_data_repository()` does not need to be run explicitly.
+    contents:
+      - save
+      - save_to_data_repository
+  - title: Paths
+    desc: The functions here define where the data repository can be found and create the 'data' directory and intermediates.
+    contents:
+      - init
+      - data_repository_path
+  - title: Loaders
+    desc: These functions are used to load data from a 'data' directory using `utils::data` behind the scenes. The `find.package` function is modified from `base` to provide the path to a data repository as well as paths to loaded packages.
+    contents:
+      - data
+      - find.package
