@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://christopherbarrington.github.io/datar/index.html</loc>
+    <loc>https://christopherbarrington.github.io/datarepository/index.html</loc>
   </url>
   <url>
-    <loc>https://christopherbarrington.github.io/datar/reference/data.html</loc>
+    <loc>https://christopherbarrington.github.io/datarepository/reference/data.html</loc>
   </url>
   <url>
-    <loc>https://christopherbarrington.github.io/datar/reference/data_repository_path.html</loc>
+    <loc>https://christopherbarrington.github.io/datarepository/reference/data_repository_path.html</loc>
   </url>
   <url>
-    <loc>https://christopherbarrington.github.io/datar/reference/find.package.html</loc>
+    <loc>https://christopherbarrington.github.io/datarepository/reference/find.package.html</loc>
   </url>
   <url>
-    <loc>https://christopherbarrington.github.io/datar/reference/init.html</loc>
+    <loc>https://christopherbarrington.github.io/datarepository/reference/init.html</loc>
   </url>
   <url>
-    <loc>https://christopherbarrington.github.io/datar/reference/save.html</loc>
+    <loc>https://christopherbarrington.github.io/datarepository/reference/save.html</loc>
   </url>
 </urlset>
