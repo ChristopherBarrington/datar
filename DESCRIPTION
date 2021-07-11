@@ -1,6 +1,6 @@
 Package: datarepository
 Title: handles saving and loading project data
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: 
   person(given='Christopher',
          family='Barrington',
