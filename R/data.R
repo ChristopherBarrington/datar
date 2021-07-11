@@ -4,7 +4,10 @@
 #' @description
 #' A copy of the `utils::data` (4.1.0) function, copied into this namespace to use the `datarepository:::find.package` function instead of `base::find.package`.
 #' 
-#' @param ... See `?utils::data`
+#' @param ... Object(s) to load from data repository _or_ loaded package
+#' 
+#' @details
+#' See `?utils::data`.
 #' 
 #' @export
 #' 

@@ -16,8 +16,11 @@ data(
 )
 }
 \arguments{
-\item{...}{See \code{?utils::data}}
+\item{...}{Object(s) to load from data repository \emph{or} loaded package}
 }
 \description{
 A copy of the \code{utils::data} (4.1.0) function, copied into this namespace to use the \code{datarepository:::find.package} function instead of \code{base::find.package}.
+}
+\details{
+See \code{?utils::data}.
 }
