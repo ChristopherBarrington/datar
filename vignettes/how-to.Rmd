@@ -1,0 +1,55 @@
+---
+title: How to use `data repository`
+author: Christopher Barrington
+
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+---
+
+The idea behind this package is to maintain a 'data' directory for a [BABS][BABS] project in the same way that an R package maintains a 'data' directory.
+
+A subdirectory of a project will be created within which a 'data' directory will also be created. As with R packages, the objects saved into that 'data' directory will be accessible via the `data()` function.
+
+By default the data repository is created in the project directory. This is defined as the first 10 directories to the current working directory (this is the standard path to a BABS project). A data repository 'data-repository' is created where any documents etc can be saved. There will be a 'data' directory where R objects can be saved.
+
+The default paths can be overwritten by setting `options()`.
+
+# Typical usage
+
+From any location within a BABS project, data can be saved and loaded. First, the environment is initialised, simply loading the package and defining two test variables.
+
+```R
+library(datarepository)
+
+foo <- bar <- letters[1:4]
+```
+
+## Saving data
+
+Now the `foo` variable will be saved to the (default) data repository at `/project/path/data-repository/data`.
+
+```R
+save(foo)
+```
+
+The default (`base`) `save` function is still accessible by including a `file` argument to the function.
+
+## Loading data
+
+The object can be loaded back into the environment using the `load` function. This function can also load  package's data in the expected way. By default, the function looks for the specified object(s) in `/project/path/data-repository/data` as well as the `data` subdirectory of all loaded packages.
+
+```R
+load(foo)
+```
+
+# Path customisation
+
+There are two variables that can be customised: the path to the project and the path within the project to the data repository. Both can be defined in the `options()` list.
+
+```R
+options(datarepo.path='~/scratch/a_test_project')
+options(datarepo.subdir='a-different-data-repository/and-subdirectory')
+```
+
+[BABS]: http://christopherbarrington@github.io
+
