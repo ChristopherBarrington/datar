@@ -2,7 +2,7 @@
 #' Load objects from a data repository
 #' 
 #' @description
-#' A copy of the `utils::data` (4.1.0) function, copied into this namespace to use the `datarepository:::find.package` function instead of `base::find.package`.
+#' A copy of the `utils::data` (4.1.0) function, copied into this namespace to use the `datarepository:::find.package()` function instead of `base::find.package`.
 #' 
 #' @param ... Object(s) to load from data repository _or_ loaded package
 #' 
@@ -11,7 +11,7 @@
 #' 
 #' @export
 #' 
-data <- function(..., list=character(), package=NULL, lib.loc=NULL, verbose=getOption("verbose"), envir=.GlobalEnv, overwrite=TRUE, paths) {
+datad <- function(..., list=character(), package=NULL, lib.loc=NULL, verbose=getOption("verbose"), envir=.GlobalEnv, overwrite=TRUE, paths) {
     fileExt <- function(x) {
         db <- grepl("\\.[^.]+\\.(gz|bz2|xz)$", x)
         ans <- sub(".*\\.", "", x)
