@@ -17,7 +17,7 @@
 #' Invisibly returns paths to saved object(s).
 #'
 save_to_data_repository <- function(..., path=data_repository_path()) {
-  path %<>% file.path('data') %>% init()
+  path %<>% file.path('data') %>% init_data_repository()
 
   objs <- usethis:::get_objs_from_dots(usethis:::dots(...))
   paths <- path(path, objs, ext='rda')

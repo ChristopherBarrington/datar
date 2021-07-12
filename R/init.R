@@ -11,7 +11,7 @@
 #' 
 #' @export
 #' 
-init <- function(path=data_repository_path()) {
+data_repository_init <- function(path=data_repository_path()) {
   if(!dir.exists(path)) {
     dir.create(path=path, recursive=TRUE, showWarnings=FALSE)
     ui_done('Created {ui_value(path)}')

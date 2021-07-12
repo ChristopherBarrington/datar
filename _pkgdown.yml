@@ -10,7 +10,7 @@ reference:
   - title: Paths
     desc: The functions here define where the data repository can be found and create the 'data' directory and intermediates.
     contents:
-      - init
+      - init_data_repository
       - system.file
   - title: Loader
     desc: These functions are used to load data from a 'data' directory using `utils::data` behind the scenes. I don't know why it says the function is called `...` it should be `data()`!
