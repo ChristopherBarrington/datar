@@ -6,9 +6,9 @@
 #' 
 #' @param ... Object(s) to load from data repository _or_ loaded package
 #' 
-#' @details
-#' See `?utils::data`.
-#' 
+#' @seealso utils::data
+#' @inherit utils::data
+#'  
 #' @export
 #' 
 data <- function(..., list=character(), package=NULL, lib.loc=NULL, verbose=getOption("verbose"), envir=.GlobalEnv, overwrite=TRUE, paths) {
@@ -205,7 +205,7 @@ data <- function(..., list=character(), package=NULL, lib.loc=NULL, verbose=getO
 #' Paths to all loaded packages (prepended with the data repository path) or the path to the specified `package`.
 #' 
 #' @importFrom magrittr %<>%
-#'
+#' 
 find.package <- function(...) {
   pkgs <- base::find.package(...)
   if(! 'package' %in% names(match.call(expand.dots=FALSE)$...))
