@@ -142,12 +142,161 @@
       <th>...</th>
       <td><p>Object(s) to load from data repository <em>or</em> loaded package</p></td>
     </tr>
+    <tr>
+      <th>list</th>
+      <td><p>a character vector.</p></td>
+    </tr>
+    <tr>
+      <th>package</th>
+      <td><p>a character vector giving the package(s) to look
+    in for data sets, or <code>NULL</code>.</p>
+<p>By default, all packages in the search path are used, then
+    the <code class="file">data</code> subdirectory (if present) of the current working
+    directory.</p></td>
+    </tr>
+    <tr>
+      <th>lib.loc</th>
+      <td><p>a character vector of directory names of <span style="R">R</span> libraries,
+    or <code>NULL</code>.  The default value of <code>NULL</code> corresponds to all
+    libraries currently known.</p></td>
+    </tr>
+    <tr>
+      <th>verbose</th>
+      <td><p>a logical.  If <code>TRUE</code>, additional diagnostics are
+    printed.</p></td>
+    </tr>
+    <tr>
+      <th>envir</th>
+      <td><p>the <a href='https://rdrr.io/r/base/environment.html'>environment</a> where the data should be loaded.</p></td>
+    </tr>
+    <tr>
+      <th>overwrite</th>
+      <td><p>logical: should existing objects of the same name in
+    <code class="env">envir</code> be replaced?</p></td>
+    </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A character vector of all data sets specified (whether found or not),
+  or information about all available data sets in an object of class
+  <code>"packageIQR"</code> if none were specified.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>See <code><a href='https://rdrr.io/r/utils/data.html'>?utils::data</a></code>.</p>
+    <p>Currently, four formats of data files are supported:</p>
+<p></p><ol>
+<li><p>files ending <code class="file">.R</code> or <code class="file">.r</code> are
+    <code><a href='https://rdrr.io/r/base/source.html'>source</a>()</code>d in, with the <span style="R">R</span> working directory changed
+    temporarily to the directory containing the respective file.
+    (<code>data</code> ensures that the <span class="pkg">utils</span> package is attached, in
+    case it had been run <em>via</em> <code><a href='https://rdrr.io/r/utils/data.html'>utils::data</a></code>.)</p></li>
+<li><p>files ending <code class="file">.RData</code> or <code class="file">.rda</code> are
+    <code><a href='https://rdrr.io/r/base/load.html'>load</a>()</code>ed.</p></li>
+<li><p>files ending <code class="file">.tab</code>, <code class="file">.txt</code> or <code class="file">.TXT</code> are read
+    using <code><a href='https://rdrr.io/r/utils/read.table.html'>read.table</a>(..., header = TRUE, as.is=FALSE)</code>,
+    and hence
+    result in a data frame.</p></li>
+<li><p>files ending <code class="file">.csv</code> or <code class="file">.CSV</code> are read using
+    <code><a href='https://rdrr.io/r/utils/read.table.html'>read.table</a>(..., header = TRUE, sep = ";", as.is=FALSE)</code>,
+    and also result in a data frame.</p></li>
+</ol><p>If more than one matching file name is found, the first on this list
+  is used.  (Files with extensions <code class="file">.txt</code>, <code class="file">.tab</code> or
+  <code class="file">.csv</code> can be compressed, with or without further extension
+  <code class="file">.gz</code>, <code class="file">.bz2</code> or <code class="file">.xz</code>.)</p>
+<p>The data sets to be loaded can be specified as a set of character
+  strings or names, or as the character vector <code>list</code>, or as both.</p>
+<p>For each given data set, the first two types (<code class="file">.R</code> or <code class="file">.r</code>,
+  and <code class="file">.RData</code> or <code class="file">.rda</code> files) can create several variables
+  in the load environment, which might all be named differently from the
+  data set.  The third and fourth types will always result in the
+  creation of a single variable with the same name (without extension)
+  as the data set.</p>
+<p>If no data sets are specified, <code>data</code> lists the available data
+  sets.  It looks for a new-style data index in the <code class="file">Meta</code> or, if
+  this is not found, an old-style <code class="file">00Index</code> file in the <code class="file">data</code>
+  directory of each specified package, and uses these files to prepare a
+  listing.  If there is a <code class="file">data</code> area but no index, available data
+  files for loading are computed and included in the listing, and a
+  warning is given: such packages are incomplete.  The information about
+  available data sets is returned in an object of class
+  <code>"packageIQR"</code>.  The structure of this class is experimental.
+  Where the datasets have a different name from the argument that should
+  be used to retrieve them the index will have an entry like
+  <code><a href='https://rdrr.io/r/datasets/beavers.html'>beaver1 (beavers)</a></code> which tells us that dataset <code>beaver1</code>
+  can be retrieved by the call <code>data(beaver)</code>.</p>
+<p>If <code>lib.loc</code> and <code>package</code> are both <code>NULL</code> (the
+  default), the data sets are searched for in all the currently loaded
+  packages then in the <code class="file">data</code> directory (if any) of the current
+  working directory.</p>
+<p>If <code>lib.loc = NULL</code> but <code>package</code> is specified as a
+  character vector, the specified package(s) are searched for first
+  amongst loaded packages and then in the default library/ies
+  (see <code><a href='https://rdrr.io/r/base/libPaths.html'>.libPaths</a></code>).</p>
+<p>If <code>lib.loc</code> <em>is</em> specified (and not <code>NULL</code>), packages
+  are searched for in the specified library/ies, even if they are
+  already loaded from another library.</p>
+<p>To just look in the <code class="file">data</code> directory of the current working
+  directory, set <code>package = character(0)</code>
+  (and <code>lib.loc = NULL</code>, the default).</p>
+    <h2 class="hasAnchor" id="good-practice"><a class="anchor" href="#good-practice"></a>Good practice</h2>
 
+    
+
+<p>There is no requirement for <code>data(<var>foo</var>)</code> to create an object
+  named <code><var>foo</var></code> (nor to create one object), although it much
+  reduces confusion if this convention is followed (and it is enforced
+  if datasets are lazy-loaded).</p>  
+<p><code>data()</code> was originally intended to allow users to load datasets
+  from packages for use in their examples, and as such it loaded the
+  datasets into the workspace <code><a href='https://rdrr.io/r/base/environment.html'>.GlobalEnv</a></code>.  This avoided
+  having large datasets in memory when not in use: that need has been
+  almost entirely superseded by lazy-loading of datasets.</p>
+<p>The ability to specify a dataset by name (without quotes) is a
+  convenience: in programming the datasets should be specified by
+  character strings (with quotes).</p>
+<p>Use of <code>data</code> within a function without an <code>envir</code> argument
+  has the almost always undesirable side-effect of putting an object in
+  the user's workspace (and indeed, of replacing any object of that name
+  already there).  It would almost always be better to put the object in
+  the current evaluation environment by
+  <code>data(..., envir = environment())</code>.
+  However, two alternatives are usually preferable,
+  both described in the &#8216;Writing R Extensions&#8217; manual.</p><ul>
+<li><p>For sets of data, set up a package to use lazy-loading of data.</p></li>
+<li><p>For objects which are system data, for example lookup tables
+    used in calculations within the function, use a file
+    <code class="file">R/sysdata.rda</code> in the package sources or create the objects by
+    <span style="R">R</span> code at package installation time.</p></li>
+</ul><p>A sometimes important distinction is that the second approach places
+  objects in the namespace but the first does not.  So if it is important
+  that the function sees <code>mytable</code> as an object from the package,
+  it is system data and the second approach should be used.  In the
+  unusual case that a package uses a lazy-loaded dataset as a default
+  argument to a function, that needs to be specified by <code><a href='https://rdrr.io/r/base/ns-dblcolon.html'>::</a></code>,
+  e.g., <code><a href='https://rdrr.io/pkg/survival/man/survexp.us.html'>survival::survexp.us</a></code>.</p>
+    <h2 class="hasAnchor" id="warning"><a class="anchor" href="#warning"></a>Warning</h2>
+
+    
+
+<p>This function creates objects in the <code>envir</code> environment (by
+  default the user's workspace) replacing any which already
+  existed. <code>data("foo")</code> can silently create objects other than
+  <code>foo</code>: there have been instances in published  packages where it
+  created/replaced <code><a href='https://rdrr.io/r/base/Random.html'>.Random.seed</a></code> and hence change the seed
+  for the session.</p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>utils::data</p></div>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='va'>utils</span><span class='op'>)</span>
+<span class='fu'>data</span><span class='op'>(</span><span class='op'>)</span>                         <span class='co'># list all available data sets</span>
+<span class='kw'><a href='https://rdrr.io/r/base/try.html'>try</a></span><span class='op'>(</span><span class='fu'>data</span><span class='op'>(</span>package <span class='op'>=</span> <span class='st'>"rpart"</span><span class='op'>)</span> <span class='op'>)</span>  <span class='co'># list the data sets in the rpart package</span>
+<span class='fu'>data</span><span class='op'>(</span><span class='va'>USArrests</span>, <span class='st'>"VADeaths"</span><span class='op'>)</span>    <span class='co'># load the data sets 'USArrests' and 'VADeaths'</span>
+<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='co'>## Alternatively</span>
+<span class='va'>ds</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"USArrests"</span>, <span class='st'>"VADeaths"</span><span class='op'>)</span>; <span class='fu'>data</span><span class='op'>(</span>list <span class='op'>=</span> <span class='va'>ds</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in data(list = ds): object 'ds' not found</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/help.html'>help</a></span><span class='op'>(</span><span class='va'>USArrests</span><span class='op'>)</span>                <span class='co'># give information on data set 'USArrests'</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

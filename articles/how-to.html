@@ -76,7 +76,7 @@
 </h1>
                         <h4 class="author">Christopher Barrington</h4>
             
-            <h4 class="date">2021-07-11</h4>
+            <h4 class="date">2021-07-12</h4>
       
       
       <div class="hidden name"><code>how-to.Rmd</code></div>
@@ -108,16 +108,19 @@
 <div id="loading-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#loading-data" class="anchor"></a>Loading data</h2>
-<p>The object can be loaded back into the environment using the <code>load</code> function. This function can also load package’s data in the expected way. By default, the function looks for the specified object(s) in <code>/project/path/data-repository/data</code> as well as the <code>data</code> subdirectory of all loaded packages.</p>
+<p>The object can be loaded back into the environment using the <code>data</code> function. This function can also load a package’s data in the expected way. By default, the function looks for the specified object(s) in <code>/project/path/data-repository/data</code> as well as the <code>data</code> subdirectory of each loaded package.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/load.html">load</a></span><span class="op">(</span><span class="va">foo</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="../reference/data.html">data</a></span><span class="op">(</span><span class="va">foo</span><span class="op">)</span></code></pre></div>
+<p>A specific file in the data repository can be found using <code><a href="../reference/system.file.html">system.file()</a></code>. If the file(s) exist in the repository the path(s) to the file(s) are returned.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/system.file.html">system.file</a></span><span class="op">(</span><span class="st">'raw/foo.tsv'</span>, package<span class="op">=</span><span class="st">'datarepository'</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
 <div id="path-customisation" class="section level1">
 <h1 class="hasAnchor">
 <a href="#path-customisation" class="anchor"></a>Path customisation</h1>
-<p>There are two variables that can be customised: the path to the project and the path within the project to the data repository. Both can be defined in the <code><a href="https://rdrr.io/r/base/options.html">options()</a></code> list.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<p>There are two variables that can be customised: the path to the project and the path within the project to the data repository. Both can be defined in the <code><a href="https://rdrr.io/r/base/options.html">options()</a></code> list. <code>datarepo.path</code> can be thought of as a <code>lib.loc</code> and <code>datarepo.subdir</code> as a <code>library</code>.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>datarepo.path<span class="op">=</span><span class="st">'~/scratch/a_test_project'</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>datarepo.subdir<span class="op">=</span><span class="st">'a-different-data-repository/and-subdirectory'</span><span class="op">)</span></code></pre></div>
 </div>
