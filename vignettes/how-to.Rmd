@@ -36,15 +36,21 @@ The default (`base`) `save` function is still accessible by including a `file` a
 
 ## Loading data
 
-The object can be loaded back into the environment using the `load` function. This function can also load  package's data in the expected way. By default, the function looks for the specified object(s) in `/project/path/data-repository/data` as well as the `data` subdirectory of all loaded packages.
+The object can be loaded back into the environment using the `data` function. This function can also load a package's data in the expected way. By default, the function looks for the specified object(s) in `/project/path/data-repository/data` as well as the `data` subdirectory of each loaded package.
 
 ```R
-load(foo)
+data(foo)
+```
+
+A specific file in the data repository can be found using `system.file()`. If the file(s) exist in the repository the path(s) to the file(s) are returned.
+
+```R
+system.file('raw/foo.tsv', package='datarepository')
 ```
 
 # Path customisation
 
-There are two variables that can be customised: the path to the project and the path within the project to the data repository. Both can be defined in the `options()` list.
+There are two variables that can be customised: the path to the project and the path within the project to the data repository. Both can be defined in the `options()` list. `datarepo.path` can be thought of as a `lib.loc` and `datarepo.subdir` as a `library`.
 
 ```R
 options(datarepo.path='~/scratch/a_test_project')
