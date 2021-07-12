@@ -7,7 +7,7 @@ Authors@R:
          role=c('aut', 'cre'),
          email='christopher.barrington@crick.ac.uk',
          comment = c(ORCID='0000-0003-1281-2658'))
-Description: Allows project data to be stored and accessed through `data()` and `system.file` functions outside of a package. Data is stored, by default, in the project root rather than the package which may be symlinked by `renv`.
+Description: Allows project data to be stored and accessed through the `save()`, `data()` and `system.file()` functions outside of a package. Data is stored, by default, in the project root rather than the package, which may be symlinked by `renv`.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
