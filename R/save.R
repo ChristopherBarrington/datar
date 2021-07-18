@@ -17,7 +17,7 @@
 #' Invisibly returns paths to saved object(s).
 #'
 save_to_data_repository <- function(..., path=data_repository_path()) {
-  path %<>% file.path('data') %>% init_data_repository()
+  path %<>% file.path('data') %>% data_repository_init()
 
   objs <- usethis:::get_objs_from_dots(usethis:::dots(...))
   paths <- path(path, objs, ext='rda')
@@ -31,7 +31,7 @@ save_to_data_repository <- function(..., path=data_repository_path()) {
 #' Save objects to a data repository
 #' 
 #' @description
-#' Uses either the `base` or `datarepository` versions of `save` depending on arguments. If the `file` argument is used, it is assumed that `base::save` was intended, otherwise the `datarepository` version is used.
+#' `save` uses either the `base` or `datarepository` versions of `save` depending on arguments. If the `file` argument is used, it is assumed that `base::save` was intended, otherwise the `datarepository` version is used.
 #' 
 #' @param ... Arguments passed to `base::save` or `save_to_data_repository()` including objects to save
 #' 
@@ -55,4 +55,60 @@ save <- function(...) {
     save_to_data_repository(...)
 }
 
+#' Write tables to file
+#' 
+#' @description
+#' `write` uses the `readr::write_` functions with the path to the data repository supplied when omitted. If the `ext` is `xlsx` then the `openxlsx` package is used to write an Excel file. Files are written into the `data` subdirectory of the data repository and can be read into objects using the `data` function as normal.
+#' 
+#' @param ... Arguments passed to `readr::write_{csv,tsv}` or `openxlsx::write.xlsx`
+#' @param ext File extension - format to write - one of `csv`, `tsv` or `xlsx`
+#' 
+#' @seealso readr write_csv
+#' @seealso readr write_tsv
+#' @seealso openxlsx write.xlsx
+#' 
+#' @describeIn save Write a file to the data repository `data` directory
+#' 
+#' @importFrom fs path
+#' @importFrom magrittr %>% %T>% extract2
+#' @importFrom openxlsx write.xlsx
+#' @importFrom readr write_csv write_tsv
+#' 
+#' @export
+#' 
+write <- function(..., ext='tsv') {
+  # check that extension is ok
+  if(!is.element(el=ext, set=c('csv','tsv','xlsx')))
+    stop('ext must be one of: csv, tsv or xlsx')
 
+  # get names of arguments, unnamed arguments (objects to save) are ''
+  match.call(expand.dots=FALSE) %>%
+    extract2('...') -> all_args
+
+  all_args_names <- names(all_args)
+  if(is.null(all_args_names))
+    all_args_names <- rep('', times=length(all_args))
+
+  # get the arguments ready to pass along
+  objs <- all_args[all_args_names==''] %>% as.character()
+  args <- all_args[all_args_names!='']
+  data_repository_path() %>%
+    file.path('data') %T>%
+    data_repository_init() %>%
+    path(objs, ext=ext) -> paths
+
+  # loop through the objects and write them
+  if(ext=='xlsx') {
+    Map(x=objs, path=paths, f=function(x, path) {
+      modifyList(list(x=get(x), file=path), args) %>%
+        do.call(what=openxlsx::write.xlsx)})
+  } else {
+    readr_writer <- str_c('readr::write_', ext) %>% parse(text=.) %>% eval()
+    Map(x=objs, path=paths, f=function(x, path) {
+      modifyList(list(x=get(x), path=path), args) %>%
+        do.call(what=readr_writer)})
+  }
+
+  # invisibly return paths to written files
+  invisible(paths)
+}
