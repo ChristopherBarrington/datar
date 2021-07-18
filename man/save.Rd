@@ -3,16 +3,21 @@
 \name{save_to_data_repository}
 \alias{save_to_data_repository}
 \alias{save}
+\alias{write}
 \title{Save objects to a data repository}
 \usage{
 save_to_data_repository(..., path = data_repository_path())
 
 save(...)
+
+write(..., ext = "tsv")
 }
 \arguments{
-\item{...}{Arguments passed to \code{base::save} or \code{save_to_data_repository()} including objects to save}
+\item{...}{Arguments passed to \verb{readr::write_\{csv,tsv\}} or \code{openxlsx::write.xlsx}}
 
 \item{path}{Path to 'data' subdirectory of a data repository in which objects will be \code{save}d, defaults to \code{datarepo:::data_repository_path()}}
+
+\item{ext}{File extension - format to write - one of \code{csv}, \code{tsv} or \code{xlsx}}
 }
 \value{
 Invisibly returns paths to saved object(s).
@@ -20,12 +25,23 @@ Invisibly returns paths to saved object(s).
 \description{
 Saves an \code{rda} in the 'data' directory of a data repository.
 
-Uses either the \code{base} or \code{datarepository} versions of \code{save} depending on arguments. If the \code{file} argument is used, it is assumed that \code{base::save} was intended, otherwise the \code{datarepository} version is used.
+\code{save} uses either the \code{base} or \code{datarepository} versions of \code{save} depending on arguments. If the \code{file} argument is used, it is assumed that \code{base::save} was intended, otherwise the \code{datarepository} version is used.
+
+\code{write} uses the \code{readr::write_} functions with the path to the data repository supplied when omitted. If the \code{ext} is \code{xlsx} then the \code{openxlsx} package is used to write an Excel file. Files are written into the \code{data} subdirectory of the data repository and can be read into objects using the \code{data} function as normal.
 }
 \section{Functions}{
 \itemize{
 \item \code{save_to_data_repository}: Save to data repository
 
 \item \code{save}: Save data using \code{base::save}
+
+\item \code{write}: Write a file to the data repository \code{data} directory
 }}
 
+\seealso{
+readr write_csv
+
+readr write_tsv
+
+openxlsx write.xlsx
+}

@@ -28,7 +28,7 @@ data_repository_path <- function()
 #' If `package=='datarepository'` then the path to the data repository is appended with the specified file(s).
 #' 
 #' @seealso base::system.file
-#' @inherit base::system.file 
+#' @inherit base::system.file
 #' 
 #' @return
 #' A path to the file(s) specified that exist, as `base::system.file()`
