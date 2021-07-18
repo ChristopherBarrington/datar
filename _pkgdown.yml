@@ -3,10 +3,11 @@ url: https://christopherbarrington.github.io/datarepository
 destination: docs
 
 reference:
-  - title: Saver
-    desc: These functions use `base::save` to write objects to a data repository. The `base::save` function will be used if `save(file='file.rda', ...)` is specified otherwise the data repository is used.
+  - title: Savers
+    desc: These functions write to a data repository as R objects (via `save`) or files (via `write`)
     contents:
       - save
+      - write
   - title: Paths
     desc: The functions here define where the data repository can be found and create the 'data' directory and intermediates.
     contents:
