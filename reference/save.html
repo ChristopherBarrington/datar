@@ -41,7 +41,8 @@
 
 <meta property="og:title" content="Save objects to a data repository — save_to_data_repository" />
 <meta property="og:description" content="Saves an rda in the 'data' directory of a data repository.
-Uses either the base or datarepository versions of save depending on arguments. If the file argument is used, it is assumed that base::save was intended, otherwise the datarepository version is used." />
+save uses either the base or datarepository versions of save depending on arguments. If the file argument is used, it is assumed that base::save was intended, otherwise the datarepository version is used.
+write uses the readr::write_ functions with the path to the data repository supplied when omitted. If the ext is xlsx then the openxlsx package is used to write an Excel file. Files are written into the data subdirectory of the data repository and can be read into objects using the data function as normal." />
 
 
 
@@ -123,23 +124,30 @@ Uses either the base or datarepository versions of save depending on arguments. 
 
     <div class="ref-description">
     <p>Saves an <code>rda</code> in the 'data' directory of a data repository.</p>
-<p>Uses either the <code>base</code> or <code>datarepository</code> versions of <code>save</code> depending on arguments. If the <code>file</code> argument is used, it is assumed that <code><a href='https://rdrr.io/r/base/save.html'>base::save</a></code> was intended, otherwise the <code>datarepository</code> version is used.</p>
+<p><code>save</code> uses either the <code>base</code> or <code>datarepository</code> versions of <code>save</code> depending on arguments. If the <code>file</code> argument is used, it is assumed that <code><a href='https://rdrr.io/r/base/save.html'>base::save</a></code> was intended, otherwise the <code>datarepository</code> version is used.</p>
+<p><code>write</code> uses the <code>readr::write_</code> functions with the path to the data repository supplied when omitted. If the <code>ext</code> is <code>xlsx</code> then the <code>openxlsx</code> package is used to write an Excel file. Files are written into the <code>data</code> subdirectory of the data repository and can be read into objects using the <code>data</code> function as normal.</p>
     </div>
 
     <pre class="usage"><span class='fu'>save_to_data_repository</span><span class='op'>(</span><span class='va'>...</span>, path <span class='op'>=</span> <span class='fu'><a href='data_repository_path.html'>data_repository_path</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
 
-<span class='fu'>save</span><span class='op'>(</span><span class='va'>...</span><span class='op'>)</span></pre>
+<span class='fu'>save</span><span class='op'>(</span><span class='va'>...</span><span class='op'>)</span>
+
+<span class='fu'>write</span><span class='op'>(</span><span class='va'>...</span>, ext <span class='op'>=</span> <span class='st'>"tsv"</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>...</th>
-      <td><p>Arguments passed to <code><a href='https://rdrr.io/r/base/save.html'>base::save</a></code> or <code>save_to_data_repository()</code> including objects to save</p></td>
+      <td><p>Arguments passed to <code>readr::write_{csv,tsv}</code> or <code><a href='https://rdrr.io/pkg/openxlsx/man/write.xlsx.html'>openxlsx::write.xlsx</a></code></p></td>
     </tr>
     <tr>
       <th>path</th>
       <td><p>Path to 'data' subdirectory of a data repository in which objects will be <code>save</code>d, defaults to <code>datarepo:::data_repository_path()</code></p></td>
+    </tr>
+    <tr>
+      <th>ext</th>
+      <td><p>File extension - format to write - one of <code>csv</code>, <code>tsv</code> or <code>xlsx</code></p></td>
     </tr>
     </table>
 
@@ -152,7 +160,13 @@ Uses either the base or datarepository versions of save depending on arguments. 
 <ul>
 <li><p><code>save_to_data_repository</code>: Save to data repository</p></li>
 <li><p><code>save</code>: Save data using <code><a href='https://rdrr.io/r/base/save.html'>base::save</a></code></p></li>
+<li><p><code>write</code>: Write a file to the data repository <code>data</code> directory</p></li>
 </ul>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p>readr write_csv</p>
+<p>readr write_tsv</p>
+<p>openxlsx write.xlsx</p></div>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
