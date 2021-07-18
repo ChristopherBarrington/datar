@@ -3,7 +3,7 @@ pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   how-to: how-to.html
-last_built: 2021-07-12T09:00Z
+last_built: 2021-07-18T12:42Z
 urls:
   reference: https://christopherbarrington.github.io/datarepository/reference
   article: https://christopherbarrington.github.io/datarepository/articles
