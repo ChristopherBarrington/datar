@@ -16,7 +16,9 @@ RoxygenNote: 7.1.1
 Imports: 
   fs,
   magrittr,
+  openxlsx,
   purrr,
+  readr,
   stringr,
   usethis,
   utils
