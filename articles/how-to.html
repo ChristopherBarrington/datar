@@ -76,7 +76,7 @@
 </h1>
                         <h4 class="author">Christopher Barrington</h4>
             
-            <h4 class="date">2021-07-19</h4>
+            <h4 class="date">2021-07-22</h4>
       
       
       <div class="hidden name"><code>how-to.Rmd</code></div>
@@ -96,23 +96,27 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://christopherbarrington.github.io/datarepository">datarepository</a></span><span class="op">)</span>
 
-<span class="va">foo</span> <span class="op">&lt;-</span> <span class="va">bar</span> <span class="op">&lt;-</span> <span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span></code></pre></div>
+<span class="va">foo</span> <span class="op">&lt;-</span> <span class="va">bar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>v<span class="op">=</span><span class="va">letters</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span></code></pre></div>
 <div id="saving-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#saving-data" class="anchor"></a>Saving data</h2>
 <p>Now the <code>foo</code> variable will be saved to the (default) data repository at <code>/project/path/data-repository/data</code>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/save_to_data_repository.html">save</a></span><span class="op">(</span><span class="va">foo</span><span class="op">)</span></code></pre></div>
-<p>The default (<code>base</code>) <code>save</code> function is still accessible by including a <code>file</code> argument to the function.</p>
+<p><code><a href="https://rdrr.io/r/base/save.html">base::save()</a></code> is still accessible by including a <code>file</code> argument to the function.</p>
+<p>A table can be written to the same <code>/project/path/data-repository/data</code> path using <code><a href="../reference/save_to_data_repository.html">write()</a></code>. Using the <code>format</code> argument, a <code>csv</code>, <code>tsv</code> or <code>xlsx</code> will be written using <code><a href="https://readr.tidyverse.org/reference/write_delim.html">readr::write_csv()</a></code>, <code><a href="https://readr.tidyverse.org/reference/write_delim.html">readr::write_tsv()</a></code> or <code><a href="https://rdrr.io/pkg/openxlsx/man/write.xlsx.html">openxlsx::write.xlsx()</a></code>.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/save_to_data_repository.html">write</a></span><span class="op">(</span><span class="va">foo</span>, <span class="va">bar</span>, format<span class="op">=</span><span class="st">'csv'</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="loading-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#loading-data" class="anchor"></a>Loading data</h2>
 <p>The object can be loaded back into the environment using the <code>data</code> function. This function can also load a package’s data in the expected way. By default, the function looks for the specified object(s) in <code>/project/path/data-repository/data</code> as well as the <code>data</code> subdirectory of each loaded package.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<p>If the object was saved as a table the file is automatically parsed.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/data.html">data</a></span><span class="op">(</span><span class="va">foo</span><span class="op">)</span></code></pre></div>
 <p>A specific file in the data repository can be found using <code><a href="../reference/system.file.html">system.file()</a></code>. If the file(s) exist in the repository the path(s) to the file(s) are returned.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/system.file.html">system.file</a></span><span class="op">(</span><span class="st">'raw/foo.tsv'</span>, package<span class="op">=</span><span class="st">'datarepository'</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
@@ -120,7 +124,7 @@
 <h1 class="hasAnchor">
 <a href="#path-customisation" class="anchor"></a>Path customisation</h1>
 <p>There are two variables that can be customised: the path to the project and the path within the project to the data repository. Both can be defined in the <code><a href="https://rdrr.io/r/base/options.html">options()</a></code> list. <code>datarepo.path</code> can be thought of as a <code>lib.loc</code> and <code>datarepo.subdir</code> as a <code>library</code>.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>datarepo.path<span class="op">=</span><span class="st">'~/scratch/a_test_project'</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>datarepo.subdir<span class="op">=</span><span class="st">'a-different-data-repository/and-subdirectory'</span><span class="op">)</span></code></pre></div>
 </div>
