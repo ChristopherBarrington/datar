@@ -21,7 +21,7 @@ From any location within a BABS project, data can be saved and loaded. First, th
 ```R
 library(datarepository)
 
-foo <- bar <- letters[1:4]
+foo <- bar <- data.frame(v=letters[1:4])
 ```
 
 ## Saving data
@@ -32,11 +32,19 @@ Now the `foo` variable will be saved to the (default) data repository at `/proje
 save(foo)
 ```
 
-The default (`base`) `save` function is still accessible by including a `file` argument to the function.
+`base::save()` is still accessible by including a `file` argument to the function.
+
+A table can be written to the same `/project/path/data-repository/data` path using `write()`. Using the `format` argument, a `csv`, `tsv` or `xlsx` will be written using `readr::write_csv()`, `readr::write_tsv()` or `openxlsx::write.xlsx()`.
+
+```R
+write(foo, bar, format='csv')
+```
 
 ## Loading data
 
 The object can be loaded back into the environment using the `data` function. This function can also load a package's data in the expected way. By default, the function looks for the specified object(s) in `/project/path/data-repository/data` as well as the `data` subdirectory of each loaded package.
+
+If the object was saved as a table the file is automatically parsed.
 
 ```R
 data(foo)
