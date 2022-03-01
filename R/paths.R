@@ -8,19 +8,15 @@
 #' Character string of path to the data repository for a project.
 #' 
 #' @importFrom magrittr %>% extract2
+#' @importFrom purrr when
 #' @importFrom stringr str_split
 #' 
 #' @export
 #' 
 data_repository_path <- function()
-  getwd() %>%
-    str_split(pattern=.Platform$file.sep) %>%
-    extract2(1) %>%
-    head(n=10) %>%
-    as.list() %>%
-    do.call(what=file.path) %>%
-    file.path(., getOption(x='datarepo.subdir', default='data-repository')) %>%
-    getOption(x='datarepo.path', default=.)
+  getOption(x='datarepo.path', default=NULL) %>%
+    when(is.null(.)~stop("data repository path not defined in options! Reload the package or use: `options(datarepo.path='/path/to/data-repository')`", call.=FALSE),
+         TRUE~.)
 
 #' Get path to a saved file in a data repository
 #' 
