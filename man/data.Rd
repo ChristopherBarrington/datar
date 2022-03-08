@@ -124,7 +124,7 @@ Currently, four formats of data files are supported:
   named \code{\var{foo}} (nor to create one object), although it much
   reduces confusion if this convention is followed (and it is enforced
   if datasets are lazy-loaded).
-  
+
   \code{data()} was originally intended to allow users to load datasets
   from packages for use in their examples, and as such it loaded the
   datasets into the workspace \code{\link{.GlobalEnv}}.  This avoided
@@ -174,7 +174,7 @@ Currently, four formats of data files are supported:
 \examples{
 require(utils)
 data()                         # list all available data sets
-try(data(package = "rpart") )  # list the data sets in the rpart package
+try(data(package = "rpart"), silent = TRUE) # list the data sets in the rpart package
 data(USArrests, "VADeaths")    # load the data sets 'USArrests' and 'VADeaths'
 \dontrun{## Alternatively
 ds <- c("USArrests", "VADeaths"); data(list = ds)}
