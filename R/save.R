@@ -7,6 +7,7 @@
 #' @param ... Object(s) to save
 #' @param path Path to 'data' subdirectory of a data repository in which objects will be `save`d, defaults to `datarepo:::data_repository_path()`
 #' 
+#' @importFrom digest digest
 #' @importFrom fs path
 #' @importFrom magrittr %<>%
 #' @importFrom usethis ui_done ui_todo ui_value
@@ -23,7 +24,11 @@ save_to_data_repository <- function(..., path=data_repository_path()) {
   paths <- path(path, objs, ext='rda')
   mapply(FUN=save, list=objs, file=paths)
 
-  ui_done("Saving {ui_value(unlist(objs))} to {ui_value(paths)}")
+  for(obj in objs)
+    get(obj) %>%
+      digest() ->> saved_object_digests[[obj]]
+
+  ui_done('Saved {ui_value(unlist(objs))} to {ui_value(paths)}')
 
   invisible(paths)
 }
@@ -112,3 +117,25 @@ write <- function(..., ext='tsv') {
   # invisibly return paths to written files
   invisible(paths)
 }
+
+#' Access a  list of object digests
+#' 
+#' Objects that are saved to the repository have their checksums recorded here.
+#' 
+#' @param .. Character string name(s) of object(s) that have been saved to the data-repository in this session.
+#' 
+#' @importFrom magrittr extract
+#' @importFrom purrr when
+#' 
+#' @export
+#' 
+get_saved_object_digest <- function(...) {
+  list(...) %>%
+    unlist() %>%
+    when(length(.)==0 ~ saved_object_digests,
+         TRUE ~ extract(saved_object_digests, .)) %>%
+    invisible()  
+}
+
+#' The list of object digests
+saved_object_digests <- list()
