@@ -1,6 +1,6 @@
 Package: datarepository
 Title: handles saving and loading project data
-Version: 0.3.0
+Version: 0.4.0
 Authors@R: 
   person(given='Christopher',
          family='Barrington',
@@ -12,7 +12,7 @@ License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown=TRUE)
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Imports: 
   fs,
   magrittr,

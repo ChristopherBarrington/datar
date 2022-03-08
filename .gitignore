@@ -35,5 +35,17 @@ vignettes/*.pdf
 *.utf8.md
 *.knit.md
 
-# Mac files
+# R Environment Variables
+.Renviron
+
+# R profile
+.Rprofile
+
+# renv files
+renv/
+renv.lock
+
+# other files
 .DS_Store
+.babs
+data-repository
