@@ -24,9 +24,9 @@ save_to_data_repository <- function(..., path=data_repository_path()) {
   paths <- path(path, objs, ext='rda')
   mapply(FUN=save, list=objs, file=paths)
 
-  for(obj in objs)
-    get(obj) %>%
-      digest() ->> saved_object_digests[[obj]]
+  # for(obj in objs)
+  #   get(obj) %>%
+  #     digest() ->> saved_object_digests[[obj]]
 
   ui_done('Saved {ui_value(unlist(objs))} to {ui_value(paths)}')
 
