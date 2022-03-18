@@ -5,7 +5,7 @@
 #' Saves an `rda` in the 'data' directory of a data repository.
 #' 
 #' @param ... Object(s) to save
-#' @param path Path to 'data' subdirectory of a data repository in which objects will be `save`d, defaults to `datarepo:::data_repository_path()`
+#' @param path Path to 'data' subdirectory of a data repository in which objects will be `save`d, defaults to `datarepository:::data_repository_path()`
 #' 
 #' @importFrom digest digest
 #' @importFrom fs path
